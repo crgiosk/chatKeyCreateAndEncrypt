@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/dimen10"
-    tools:context=".LoginFragment">
+    tools:context=".views.LoginFragment">
 
 
     <com.google.android.material.textfield.TextInputLayout

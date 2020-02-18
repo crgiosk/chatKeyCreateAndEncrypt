@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/dimen10"
-    tools:context=".Chat">
+    tools:context=".views.Chat">
 
     <EditText
         android:id="@+id/nameUserTextView"

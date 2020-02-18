@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.wiedii.chat.LoginFragment"
+        android:name="com.wiedii.chat.views.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.wiedii.chat.ContactsFragment"
+        android:name="com.wiedii.chat.views.ContactsFragment"
         android:label="fragment_contacts"
         tools:layout="@layout/fragment_contacts" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/chat"
-        android:name="com.wiedii.chat.Chat"
+        android:name="com.wiedii.chat.views.Chat"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
 </navigation>
