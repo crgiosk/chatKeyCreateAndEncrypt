@@ -7,40 +7,75 @@
     android:layout_margin="@dimen/dimen10"
     tools:context=".views.Chat">
 
-    <EditText
-        android:id="@+id/nameUserTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerAlice"
+        android:layout_width="196dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toStartOf="@+id/containerBob"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/messageAliceToBob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Type somthing"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/senMessageAliceTobob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alice Message to Bob "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/messageAliceToBob" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBob"
+        android:layout_width="196dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/containerAlice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/containerAlice"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/messageBobToAlice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type somthing"
+            app:layout_constraintEnd_toEndOf="@+id/senMessageBobToAlice"
+            app:layout_constraintStart_toStartOf="@+id/senMessageBobToAlice"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/senMessageBobToAlice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bob Message to Alice"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/messageBobToAlice" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/messageToSendTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameUserTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/containerAlice"
+        tools:listitem="@layout/item_chat"/>
 
-    <EditText
-        android:id="@+id/messageToSendTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:maxLines="3"
-        android:hint="Type a message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/sendMessageButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/sendMessageButton" />
 
-    <Button
-        android:id="@+id/sendMessageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:hint="Send MEssage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

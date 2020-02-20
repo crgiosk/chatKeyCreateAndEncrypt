@@ -1,17 +1,14 @@
 package com.wiedii.chat.views
 
 import android.os.Bundle
-import android.security.KeyPairGeneratorSpec
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.wiedii.chat.Persona
 import com.wiedii.chat.R
 import kotlinx.android.synthetic.main.fragment_login.*
-import java.security.KeyPairGenerator
 
 class LoginFragment : Fragment() {
 
@@ -26,29 +23,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         buttonLogin.setOnClickListener {
-            createKey()
+           findNavController().navigate(R.id.action_loginFragment_to_chat)
         }
-    }
-
-
-    private fun createKey(){
-        val kpg: KeyPairGenerator = KeyPairGenerator.getInstance(
-            KeyProperties.KEY_ALGORITHM_EC,
-            "AndroidKeyStore"
-        )
-
-        val parameterSpec: KeyGenParameterSpec = KeyGenParameterSpec.Builder(
-            "aliasKey",
-            KeyProperties.PURPOSE_SIGN or KeyProperties.PURPOSE_VERIFY
-        ).run {
-            setDigests(KeyProperties.DIGEST_SHA256, KeyProperties.DIGEST_SHA512)
-            build()
-        }
-
-        kpg.initialize(parameterSpec)
-        val kp = kpg.genKeyPair()
-
-        Log.e(TAG,"private key ${kp.private} \npublic key ${kp.public}\n${kp}")
     }
 
     companion object{
