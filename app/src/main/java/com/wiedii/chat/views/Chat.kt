@@ -2,6 +2,7 @@ package com.wiedii.chat.views
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +38,7 @@ class Chat : Fragment() {
                 if (!(it.toString().isEmpty())) {
                     val mensaje = alice.encryptMessage(it.text.toString(),bob)
                     chat(
-                        Message(alice.name,"$mensaje")
+                        Message(alice.name,"$mensaje",alice.secretMessage)
                     )
                 }
             }
@@ -46,7 +47,10 @@ class Chat : Fragment() {
         senMessageBobToAlice.setOnClickListener {
             messageBobToAlice.let {
                 if (!(it.toString().isEmpty())) {
-                    bob.encryptMessage(it.text.toString(),alice)
+                    val mensaje = bob.encryptMessage(it.text.toString(),alice)
+                    chat(
+                        Message(bob.name,"$mensaje",bob.secretMessage)
+                    )
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.wiedii.chat
 
+import android.util.Base64
 import android.util.Log
 import java.security.Key
 import java.security.KeyPairGenerator
@@ -14,14 +15,12 @@ class Persona(nombre: String) {
     private lateinit var publicKey: PublicKey
     private lateinit var personaPublicKey: PublicKey
     var comunKey: ByteArray? = null
-    var secretMessage: String? = null
+    var secretMessage: String = String()
 
     fun createKey() {
         val keyPairGenerator = KeyPairGenerator.getInstance("DH")
         keyPairGenerator.initialize(1024)
-
         val gp = keyPairGenerator.generateKeyPair()
-
         privateKey = gp.private
         publicKey = gp.public
     }
@@ -53,9 +52,9 @@ class Persona(nombre: String) {
             cipher.init(Cipher.ENCRYPT_MODE, keySpec)
 
             val encryptedMessage = cipher.doFinal(message.toByteArray())
-            Log.e(TAG, "Message encrypted $encryptedMessage")
+            secretMessage = Base64.encodeToString(encryptedMessage,Base64.DEFAULT)
+            Log.e(TAG, "Message encrypted $secretMessage")
             Log.e(TAG, "Message from $name to ${person.name} \nMessage encrypted $encryptedMessage")
-
             return person.receiveAndDecryptMessage(encryptedMessage)
         } catch (e: Exception) {
             e.printStackTrace()

@@ -2,5 +2,6 @@ package com.wiedii.chat
 
 data class Message (
     val nombrePersona: String,
-    val message: String
+    val message: String,
+    val messageEncrypt: String
 )

@@ -33,14 +33,16 @@ class ChatAdapter: RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(message: Message){
             itemView.message.text = message.message
-            itemView.messageEncrypt.text = message.message
+            itemView.messageEncrypt.text = message.messageEncrypt
 
             when (message.nombrePersona.toLowerCase()){
                 "alice" ->{
-                    itemView.message.gravity = Gravity.START
+                    itemView.message.gravity = Gravity.END
+                    itemView.messageEncrypt.gravity = Gravity.END
                 }
                 else -> {
-                    itemView.message.gravity = Gravity.END
+                    itemView.message.gravity = Gravity.START
+                    itemView.messageEncrypt.gravity = Gravity.START
                 }
             }
 
