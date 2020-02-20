@@ -46,7 +46,7 @@ class Persona(nombre: String) {
         try {
 
             // You can use Blowfish or another symmetric algorithm but you must adjust the key size.
-            val keySpec = SecretKeySpec(comunKey!!, "DES")
+            val keySpec = SecretKeySpec(comunKey!!, "AES")
             val cipher = Cipher.getInstance("DES/ECB/PKCS5Padding")
 
             cipher.init(Cipher.ENCRYPT_MODE, keySpec)
@@ -68,7 +68,7 @@ class Persona(nombre: String) {
         try {
 
             // You can use Blowfish or another symmetric algorithm but you must adjust the key size.
-            val keySpec = SecretKeySpec(comunKey!!, "DES")
+            val keySpec = SecretKeySpec(comunKey!!, "AES")
             val cipher = Cipher.getInstance("DES/ECB/PKCS5Padding")
 
             cipher.init(Cipher.DECRYPT_MODE, keySpec)

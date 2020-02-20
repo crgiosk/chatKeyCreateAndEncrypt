@@ -7,12 +7,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_chat.view.*
 
-class ChatAdapter: RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
+class ChatAdapter(val clickClosure: (Message) -> Unit): RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
 
     private val listMessages: MutableList<Message> = mutableListOf()
 
     fun setData(message: Message){
         listMessages.add(message)
+        notifyDataSetChanged()
+    }
+
+    fun deleteMensaje(message: Message){
+        this.listMessages.removeIf {
+            it.message.equals(message.message) && it.nombrePersona.equals(message.nombrePersona)
+        }
         notifyDataSetChanged()
     }
 
@@ -43,6 +50,15 @@ class ChatAdapter: RecyclerView.Adapter<ChatAdapter.ViewHolder>() {
                 else -> {
                     itemView.message.gravity = Gravity.START
                     itemView.messageEncrypt.gravity = Gravity.START
+                }
+            }
+
+            itemView.containerMessage.setOnCreateContextMenuListener { menu, v, menuInfo ->
+                val optionDeleteMessage = menu.add("Eliminar")
+
+                optionDeleteMessage.setOnMenuItemClickListener {
+                    clickClosure(message)
+                    false
                 }
             }
 

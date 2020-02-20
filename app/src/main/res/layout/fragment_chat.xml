@@ -18,9 +18,10 @@
 
         <EditText
             android:id="@+id/messageAliceToBob"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type somthing"
+            android:maxLines="3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Type somthing"
+            android:maxLines="3"
             app:layout_constraintEnd_toEndOf="@+id/senMessageBobToAlice"
             app:layout_constraintStart_toStartOf="@+id/senMessageBobToAlice"
             app:layout_constraintTop_toTopOf="parent" />

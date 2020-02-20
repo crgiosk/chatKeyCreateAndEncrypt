@@ -40,6 +40,7 @@ class Chat : Fragment() {
                     chat(
                         Message(alice.name,"$mensaje",alice.secretMessage)
                     )
+                    autoScroll()
                 }
             }
         }
@@ -51,16 +52,25 @@ class Chat : Fragment() {
                     chat(
                         Message(bob.name,"$mensaje",bob.secretMessage)
                     )
+                    autoScroll()
                 }
             }
         }
     }
 
+    private fun autoScroll(){
+        recyclerViewChat.smoothScrollToPosition(adapterChat.itemCount)
+    }
+
     private fun initUi() {
-        adapterChat = ChatAdapter()
+        adapterChat = ChatAdapter{
+            adapterChat.deleteMensaje(it)
+            recyclerViewChat.smoothScrollToPosition(adapterChat.itemCount)
+        }
         recyclerViewChat.run {
             layoutManager = LinearLayoutManager(context!!, RecyclerView.VERTICAL, false)
             adapter = adapterChat
+            setHasFixedSize(true)
         }
     }
 
