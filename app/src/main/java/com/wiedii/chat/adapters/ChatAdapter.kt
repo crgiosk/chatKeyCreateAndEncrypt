@@ -1,10 +1,12 @@
-package com.wiedii.chat
+package com.wiedii.chat.adapters
 
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.wiedii.chat.R
+import com.wiedii.chat.entities.Message
 import kotlinx.android.synthetic.main.item_chat.view.*
 
 class ChatAdapter(val clickClosure: (Message) -> Unit): RecyclerView.Adapter<ChatAdapter.ViewHolder>() {

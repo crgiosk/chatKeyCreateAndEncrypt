@@ -2,19 +2,17 @@ package com.wiedii.chat.views
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.wiedii.chat.ChatAdapter
-import com.wiedii.chat.Message
-import com.wiedii.chat.Persona
+import com.wiedii.chat.adapters.ChatAdapter
+import com.wiedii.chat.entities.Message
+import com.wiedii.chat.entities.Persona
 import com.wiedii.chat.R
 import kotlinx.android.synthetic.main.fragment_chat.*
-import kotlinx.android.synthetic.main.item_chat.*
 
 class Chat : Fragment() {
 
@@ -38,7 +36,11 @@ class Chat : Fragment() {
                 if (!(it.toString().isEmpty())) {
                     val mensaje = alice.encryptMessage(it.text.toString(),bob)
                     chat(
-                        Message(alice.name,"$mensaje",alice.secretMessage)
+                        Message(
+                            alice.name,
+                            "$mensaje",
+                            alice.secretMessage
+                        )
                     )
                     autoScroll()
                 }
@@ -50,7 +52,7 @@ class Chat : Fragment() {
                 if (!(it.toString().isEmpty())) {
                     val mensaje = bob.encryptMessage(it.text.toString(),alice)
                     chat(
-                        Message(bob.name,"$mensaje",bob.secretMessage)
+                        Message(bob.name, "$mensaje", bob.secretMessage)
                     )
                     autoScroll()
                 }
@@ -63,7 +65,7 @@ class Chat : Fragment() {
     }
 
     private fun initUi() {
-        adapterChat = ChatAdapter{
+        adapterChat = ChatAdapter {
             adapterChat.deleteMensaje(it)
             recyclerViewChat.smoothScrollToPosition(adapterChat.itemCount)
         }

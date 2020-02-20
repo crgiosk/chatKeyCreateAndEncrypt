@@ -1,4 +1,4 @@
-package com.wiedii.chat
+package com.wiedii.chat.entities
 
 import android.util.Base64
 import android.util.Log

@@ -1,4 +1,4 @@
-package com.wiedii.chat
+package com.wiedii.chat.entities
 
 data class Message (
     val nombrePersona: String,
