@@ -1,5 +1,6 @@
 package com.wiedii.chat.adapters
 
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -14,15 +15,19 @@ class ChatAdapter(val clickClosure: (Message) -> Unit): RecyclerView.Adapter<Cha
     private val listMessages: MutableList<Message> = mutableListOf()
 
     fun setData(message: Message){
-        listMessages.add(message)
+        this.listMessages.add(message)
         notifyDataSetChanged()
+        notifyItemInserted(this.listMessages.size -1 )
+        notifyItemChanged(this.listMessages.size -1 )
+
+        Log.e("chatAdapter","message ${message.message}/// size ${this.listMessages.size -1 }")
     }
 
     fun deleteMensaje(message: Message){
         this.listMessages.removeIf {
             it.message.equals(message.message) && it.nombrePersona.equals(message.nombrePersona)
         }
-        notifyDataSetChanged()
+        notifyItemInserted(0)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
